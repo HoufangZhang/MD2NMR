@@ -25,8 +25,8 @@ B0 = 14.1
 resid = [[0, 10]]#[[0, 135], [0, 135]]
 use_chain_ids = False #True or False
 chain_ids = ['C','G']
-wd = '../data/'  
-od = '../'
+wd = './data/'  
+od = './'
 dt = 100
 n_exp = 3
 

@@ -2,6 +2,8 @@
 Written by TW in Jan 2023, Queen's University Panchenko's Lab.
 For any enquiries please contact anna.panchenko@queensu.ca. back up email: t.wei@queensu.ca 
 
+Subsequently modified and updated by Houfang Zhang and Yunhui Peng in July 2025, Central China Normal University. For any enquiries please contact yunhuipeng@ccnu.edu.cn
+
 ## Description
 MD2NMR is a tool for calculating NMR relaxation observables (R1/R2/NOE/T1/T2/Tau_c) directly from MD trajectories. Initially written for calculations regarding nucleosome simulations but can be extended for other proteins/complexes. This software is subject to MIT license, with some functions imported from other repo, as noted individually in script comment section.
 

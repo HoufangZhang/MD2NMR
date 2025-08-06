@@ -19,20 +19,19 @@ note for nucleosome we have two copies of tails, input like: [[0, 37], [136,172]
 10. Tumbling time constant in nanoseconds. If the system is a nucleosome, the default is 163.4 ns based on Rabdano et al., 2021
 """
 
-n_split = 20 
-tau_max = 1.8
+n_split = 90 
+tau_max = 6
 B0 = 14.1 
-resid = [[0, 10]]#[[0, 135], [0, 135]]
+resid = [[0, 37]]#[[0, 135], [0, 135]]
 use_chain_ids = False #True or False
-chain_ids = ['C','G']
+chain_ids = ['H']
 wd = './data/'  
-od = './'
-dt = 100
+od = './data/'
+dt = 40
 n_exp = 3
 
 
-#traj_segment = [200, 20000]  #traj[start_snap:end_snap]
-traj_segment = None
+traj_segment = [5000, 50000]  #[start_snap:end_snap] or None
 traj_stride = 1
 
 

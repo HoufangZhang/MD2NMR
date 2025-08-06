@@ -27,16 +27,16 @@ Before usage, please check the `config.py` file and make sure the parameters are
 ### Data Download Protocol
 To download the testing MD trajectory, use the following command to download it under the `./data` directory:
 
-python ./test/download_data.py
+python ./tests/download_data.py
 
 
 ### Testing Protocol
 To test MD2NMR, run the following command after downloading the testing MD trajectory:
-python ./src/md2nmr.py -t H2A.pdb -y H2A_1.xtc
+python ./src/md2nmr.py -t H3.pdb -y H3_1.xtc
 
 The result should be in the output directory. Then, change the `$use_chain_ids$` in `config.py` to `"use_chain_ids = False"` and run the following command to test on the other trajectory:
 
-python ./src/md2nmr.py -t vanilla_run1.pdb -y vanilla_run1.xtc
+python3 ./src/md2nmr.py -t WT_rw_run1.pdb -y WT_rw_run1_2000ns_40ps.xtc 
 
 
 ### Test on your own trajectory.

@@ -32,7 +32,7 @@ Double-check that the magnetic field strength (`B0` in `config.py`) matches the 
 ### Data Download Protocol
 To download the test MD trajectory, run the following command to place it under the `./data` directory:
 
-python ./tests/download_data.py
+python ./tests/download_dataset.py
 
 ### Testing Protocol
 After downloading the test MD trajectory, run:

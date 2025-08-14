@@ -1,5 +1,5 @@
 #this is a config file for NMR relaxation rate calculation
-#Originally written by TW in January 2023, and later modified and updated by Houfang Zhang in July 2025.
+#Originally written by TW in January 2023, and later modified and updated by Houfang Zhang and Yunhui Peng in July 2025.
 #This script and the main software is subject to the MIT licence
 
 ### DEFINE PARAMETERS ###

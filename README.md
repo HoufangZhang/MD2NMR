@@ -1,37 +1,41 @@
 # MD2NMR
 Written by TW in Jan 2023, Queen's University Panchenko's Lab.
-For any enquiries please contact anna.panchenko@queensu.ca. back up email: t.wei@queensu.ca 
+For any enquiries, please contact anna.panchenko@queensu.ca.
+Backup email: t.wei@queensu.ca
 
-Subsequently modified and updated by Houfang Zhang and Yunhui Peng in July 2025, Central China Normal University. For any enquiries please contact yunhuipeng@ccnu.edu.cn
+Subsequently modified and updated by Houfang Zhang and Yunhui Peng in July 2025, Central China Normal University.
+For any enquiries please contact yunhuipeng@ccnu.edu.cn
 
 ## Description
-MD2NMR is a tool for calculating NMR relaxation observables (R1/R2/NOE/T1/T2/Tau_c) directly from MD trajectories. Initially written for calculations regarding nucleosome simulations but can be extended for other proteins/complexes. This software is subject to MIT license, with some functions imported from other repo, as noted individually in script comment section.
+MD2NMR is a tool for calculating NMR relaxation observables (R1/R2/NOE/T1/T2/Tau_c) directly from MD trajectories. It was initially developed for nucleosome simulation analysis but can be extended to other proteins or complexes. This software is distributed under the MIT license. Some functions are imported from other repositories, as noted individually in the script comments.
 
 ## Dependencies
 The required packages are listed in 'requirements.txt'.
-To create a new environment using anaconda: (replace myenv as appropriate)
+To create a new environment using Anaconda (replace myenv as appropriate):
 conda create --name myenv --file requirements.txt
 
-or use pip:
+Or using pip:
 pip install virtualenv #create virtual environment
 virtualenv test_env
 source test_env/bin/activate
 pip install numpy==1.23.4 pandas==1.5.1 scikit-learn==1.1.3 scipy==1.9.3 mdtraj==1.9.9
 
 ## Usage
-For single file mode (basic usage):
 
+For single-file mode (basic usage):
 
-Before usage, please check the `config.py` file and make sure the parameters are suitable for the calculation. You can change the prefix list and working directory/output directory as needed. Double-check that the magnetic field strength corresponds to the experiment result: B0 in `config.py` file.
+Before running, check the `config.py` file to ensure the parameters are suitable for your calculation.  
+You can modify the `prefix_list` and working/output directories as needed.  
+Double-check that the magnetic field strength (`B0` in `config.py`) matches the experimental value.
+
 
 ### Data Download Protocol
-To download the testing MD trajectory, use the following command to download it under the `./data` directory:
+To download the test MD trajectory, run the following command to place it under the `./data` directory:
 
 python ./tests/download_data.py
 
-
 ### Testing Protocol
-To test MD2NMR, run the following command after downloading the testing MD trajectory:
+After downloading the test MD trajectory, run:
 python ./src/md2nmr.py -t H3.pdb -y H3_1.xtc
 
 The result should be in the output directory. Then, change the `$use_chain_ids$` in `config.py` to `"use_chain_ids = False"` and run the following command to test on the other trajectory:
@@ -41,12 +45,19 @@ python3 ./src/md2nmr.py -t WT_rw_run1.pdb -y WT_rw_run1_2000ns_40ps.xtc
 
 ### Test on your own trajectory.
 Follow the steps below:
-1. Check the magnetic field parameters. In the config.py the mag field unit is Tesla.
-2. Check if the trajectory file is long enough. Usually an accurate calculation will need at least 200ns. In the config.py, make sure your traj length is longer than the number of split of trajectory(n_split) times the cutoff length (tau_max). e.g. for a 1000ns trajectory, recommend setting is: n_split = 50; tau_max = 1.8. See the config file for detailed explaination on parameters.
-3. Check your topology file, usually this is a pdb file. Note that for different MD packages (AMBER/GROMACS/NAMD) the standard output format may be different. If your PDB file is seperated in different chains, set the change the `$use_chain_ids$` in `config.py` to `"use_chain_ids = True"` otherwise set to False (default).
-4. make sure the working directory `"wd"` and the output directory `"od"` is set and you will see a prompt by the software the trajectory is loaded. 
+1. Check the magnetic field parameters — In config.py, the magnetic field unit is Tesla.
+2. Ensure the trajectory is long enough — For accurate calculations, at least 200 ns is recommended. In config.py, the trajectory length should be longer than n_split * tau_max * 2. Example: For a 1000 ns trajectory, a recommended setting is n_split = 50 and tau_max = 1.8.
+3. Check your topology file — Usually a .pdb file. Different MD packages (AMBER/GROMACS/NAMD) may use different output formats. If your PDB file contains multiple chains, set use_chain_ids = True; otherwise keep it as False (default).
+4. Set the working directory (wd) and output directory (od) — The program will prompt when the trajectory is loaded.
 
 ### Batch Mode Protocol
-For batch mode, check the `config.py` file and modify the `prefix_list` variable in it. Note that the batch mode will generate results for all traj/topo under working directory with satisfied prefix. Then, in the command line, run:
+For batch mode, check the `config.py` file and modify the `prefix_list` variable.  
+Batch mode will generate results for all trajectory/topology files in the working directory that match the specified prefix.  
+Then, run the following command in the terminal:
 
 python ./src/md2nmr.py --batch=True
+
+## Example Run
+
+You can see a step-by-step run example in the Jupyter Notebook:
+[Run_nmr_relaxation.ipynb](./Run_nmr_relaxation.ipynb)
